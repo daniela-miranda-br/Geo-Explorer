@@ -1,0 +1,21 @@
+﻿# ==============================================
+# .bobignore - Arquivo de exclusao do IBM Bob
+# Projeto: Dio-Class | dio_explorer
+# ==============================================
+
+# Dependencias de pacotes
+node_modules/
+
+# Variaveis de ambiente e segredos
+.env
+.env.*
+*.env
+
+# Cache de progresso
+dio_explorer/data/cache-progresso/
+
+# Certificados emitidos
+dio_explorer/docs/certificados-emitidos/
+
+# Arquivos temporarios
+*.tmp
