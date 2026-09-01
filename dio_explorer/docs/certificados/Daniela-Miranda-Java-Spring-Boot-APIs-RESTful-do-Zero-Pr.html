@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificado DIO — "Daniela Miranda"</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .cert {
+      background: #ffffff;
+      width: 100%;
+      max-width: 820px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    }
+    .cert-header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #7c3aed 100%);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      position: relative;
+    }
+    .cert-header::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+    .cert-logo { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .cert-org {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.75rem;
+    }
+    .cert-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .cert-body { padding: 2.5rem 3rem; }
+    .cert-atesta {
+      text-align: center;
+      color: #64748b;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .cert-nome {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .cert-concluiu {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+    .cert-trilha {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1d4ed8;
+      margin-bottom: 2rem;
+    }
+    .cert-divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 1.5rem 0;
+    }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .cert-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+    .cert-item-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94a3b8;
+      margin-bottom: 0.25rem;
+    }
+    .cert-item-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .cert-nivel-badge {
+      display: inline-block;
+      background: #f59e0b22;
+      color: #f59e0b;
+      border: 1px solid #f59e0b55;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .cert-codigo {
+      font-family: monospace;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    .badges { margin-bottom: 2rem; }
+    .badges h3 {
+      font-size: 0.9rem;
+      color: #475569;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badges-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .badge {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .cert-declaracao {
+      background: #f8fafc;
+      border-left: 4px solid #1d4ed8;
+      padding: 1rem 1.25rem;
+      color: #475569;
+      font-style: italic;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 2rem;
+    }
+    .cert-assinaturas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .assinatura {
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 2px solid #1e293b;
+    }
+    .assinatura-nome { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+    .assinatura-cargo { color: #94a3b8; font-size: 0.8rem; }
+    .cert-footer {
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    .cert-footer a { color: #1d4ed8; text-decoration: none; }
+    @media (max-width: 600px) {
+      .cert-grid, .cert-assinaturas { grid-template-columns: 1fr; }
+      .cert-body { padding: 1.5rem; }
+      .cert-nome { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cert">
+    <div class="cert-header">
+      <div class="cert-logo">🏅</div>
+      <div class="cert-org">Digital Innovation One — DIO</div>
+      <div class="cert-title">Certificado de Conclusão</div>
+    </div>
+    <div class="cert-body">
+      <p class="cert-atesta">Certificamos que</p>
+      <div class="cert-nome">"Daniela Miranda"</div>
+      <p class="cert-concluiu">concluiu com êxito a trilha de aprendizado:</p>
+      <div class="cert-trilha">Java Spring Boot: APIs RESTful do Zero à Produção</div>
+
+      <div class="cert-grid">
+        <div class="cert-item">
+          <div class="cert-item-label">🛠️ Tecnologia</div>
+          <div class="cert-item-value">Java / Spring Boot / REST</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-label">📊 Nível</div>
+          <div class="cert-item-value"><span class="cert-nivel-badge">Intermediário</span></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-label">⭐ XP Conquistado</div>
+          <div class="cert-item-value">13.000 XP</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-label">📅 Data de Emissão</div>
+          <div class="cert-item-value">01 de setembro de 2026</div>
+        </div>
+      </div>
+
+      <div class="cert-item" style="margin-bottom:1.5rem">
+        <div class="cert-item-label">🔑 Código de Validação</div>
+        <div class="cert-item-value"><span class="cert-codigo">DIO-474E-5C07-6188</span></div>
+      </div>
+
+      <div class="badges">
+          <h3>🏅 Badges Conquistadas</h3>
+          <div class="badges-list">
+            <span class="badge">🎖️ Java Champion</span><span class="badge">🎖️ Spring Master</span><span class="badge">🎖️ API Builder</span>
+          </div>
+        </div>
+
+      <div class="cert-declaracao">
+        Este certificado atesta que o(a) participante demonstrou dedicação, comprometimento e
+        domínio dos conteúdos apresentados ao longo da trilha, desenvolvendo habilidades práticas
+        e teóricas reconhecidas pela comunidade DIO.
+      </div>
+
+      <div class="cert-assinaturas">
+        <div class="assinatura">
+          <div class="assinatura-nome">"Daniela Miranda"</div>
+          <div class="assinatura-cargo">Participante</div>
+        </div>
+        <div class="assinatura">
+          <div class="assinatura-nome">IBM Bob</div>
+          <div class="assinatura-cargo">Assistente Oficial</div>
+        </div>
+      </div>
+    </div>
+    <div class="cert-footer">
+      <span>🔐 Código: <strong>DIO-474E-5C07-6188</strong></span>
+      <a href="https://github.com/daniela-miranda-br/Dio-Class" target="_blank">
+        📎 Verificar autenticidade
+      </a>
+    </div>
+  </div>
+</body>
+</html>

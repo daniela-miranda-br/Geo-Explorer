@@ -385,3 +385,278 @@ describe("dispatch() — index.js", () => {
     expect(resultado).toContain("Java Spring Boot");
   });
 });
+
+// ─────────────────────────────────────────────
+// Novas tecnologias no catálogo de desafios
+// ─────────────────────────────────────────────
+describe("/desafio — novas tecnologias do catálogo", () => {
+  test("encontra desafio TypeScript Iniciante", () => {
+    const d = encontrarDesafio("typescript", "Iniciante");
+    expect(d).toBeDefined();
+    expect(d.titulo).toBe("Tipando uma API de Usuários");
+  });
+
+  test("encontra desafio TypeScript Intermediário", () => {
+    const d = encontrarDesafio("typescript", "Intermediário");
+    expect(d.titulo).toBe("Generic Repository Pattern");
+  });
+
+  test("encontra desafio TypeScript Avançado", () => {
+    const d = encontrarDesafio("typescript", "Avançado");
+    expect(d.titulo).toBe("Type-safe Event Bus");
+  });
+
+  test("encontra desafio Go Iniciante", () => {
+    const d = encontrarDesafio("golang", "Iniciante");
+    expect(d).toBeDefined();
+    expect(d.titulo).toBe("Servidor HTTP Básico");
+  });
+
+  test("encontra desafio Go pelo termo 'go'", () => {
+    const d = encontrarDesafio("go", "Intermediário");
+    expect(d).toBeDefined();
+    expect(d.titulo).toBe("Worker Pool com Goroutines");
+  });
+
+  test("encontra desafio Kotlin Iniciante", () => {
+    const d = encontrarDesafio("kotlin", "Iniciante");
+    expect(d).toBeDefined();
+    expect(d.titulo).toBe("Calculadora com Sealed Class");
+  });
+
+  test("encontra desafio C# Iniciante", () => {
+    const d = encontrarDesafio("csharp", "Iniciante");
+    expect(d).toBeDefined();
+    expect(d.titulo).toBe("Lista Genérica com LINQ");
+  });
+
+  test("encontra desafio SQL Iniciante", () => {
+    const d = encontrarDesafio("sql", "Iniciante");
+    expect(d).toBeDefined();
+    expect(d.titulo).toBe("Consultas com JOIN");
+  });
+
+  test("encontra desafio SQL Avançado", () => {
+    const d = encontrarDesafio("sql", "Avançado");
+    expect(d.titulo).toBe("Otimização de Query com Índices");
+  });
+
+  test("encontra desafio Kubernetes Iniciante", () => {
+    const d = encontrarDesafio("kubernetes", "Iniciante");
+    expect(d).toBeDefined();
+    expect(d.titulo).toBe("Deploy de uma API com Kubernetes");
+  });
+
+  test("encontra desafio Kubernetes Avançado (Canary)", () => {
+    const d = encontrarDesafio("kubernetes", "Avançado");
+    expect(d.titulo).toBe("Canary Deployment com Ingress");
+  });
+});
+
+// ─────────────────────────────────────────────
+// /progresso
+// ─────────────────────────────────────────────
+describe("/progresso — buscarParticipante()", () => {
+  const { buscarParticipante, gerarRelatorioProgresso, run: runProgresso } = require("../commands/progresso");
+
+  test("encontra participante Daniela Miranda", () => {
+    const p = buscarParticipante("Daniela");
+    expect(p).toBeDefined();
+    expect(p.nome).toBe("Daniela Miranda");
+  });
+
+  test("busca é case-insensitive", () => {
+    const p = buscarParticipante("daniela miranda");
+    expect(p).toBeDefined();
+  });
+
+  test("retorna null para participante inexistente", () => {
+    const p = buscarParticipante("XYZ_INEXISTENTE_999");
+    expect(p).toBeNull();
+  });
+});
+
+describe("/progresso — gerarRelatorioProgresso()", () => {
+  const { buscarParticipante, gerarRelatorioProgresso } = require("../commands/progresso");
+
+  test("retorna string com nome do participante", () => {
+    const p = buscarParticipante("Daniela");
+    const relatorio = gerarRelatorioProgresso(p);
+    expect(typeof relatorio).toBe("string");
+    expect(relatorio).toContain("Daniela Miranda");
+  });
+
+  test("contém resumo de métricas", () => {
+    const p = buscarParticipante("Daniela");
+    const relatorio = gerarRelatorioProgresso(p);
+    expect(relatorio).toContain("Resumo");
+    expect(relatorio).toContain("Trilhas Concluídas");
+    expect(relatorio).toContain("Em Andamento");
+  });
+
+  test("exibe trilha em andamento corretamente", () => {
+    const p = buscarParticipante("Daniela");
+    const relatorio = gerarRelatorioProgresso(p);
+    expect(relatorio).toContain("Em Andamento");
+    expect(relatorio).toContain("IBM Bob");
+  });
+
+  test("exibe barra de progresso dos módulos", () => {
+    const p = buscarParticipante("Daniela");
+    const relatorio = gerarRelatorioProgresso(p);
+    expect(relatorio).toMatch(/\d+\/\d+/); // ex: 3/12
+  });
+});
+
+describe("/progresso — run()", () => {
+  const { run: runProgresso } = require("../commands/progresso");
+
+  test("retorna relatório para participante existente", () => {
+    const resultado = runProgresso("Daniela");
+    expect(resultado).toContain("Progresso de Aprendizado");
+    expect(resultado).toContain("Daniela Miranda");
+  });
+
+  test("retorna erro para participante inexistente", () => {
+    const resultado = runProgresso("XYZ_INEXISTENTE_999");
+    expect(resultado).toContain("❌");
+    expect(resultado).toContain("Nenhum progresso encontrado");
+  });
+
+  test("retorna instrução de uso para args vazio", () => {
+    const resultado = runProgresso("");
+    expect(resultado).toContain("❌");
+    expect(resultado).toContain("/progresso");
+  });
+
+  test("retorna instrução de uso para args null", () => {
+    const resultado = runProgresso(null);
+    expect(resultado).toContain("❌");
+  });
+});
+
+// ─────────────────────────────────────────────
+// /certificado --html
+// ─────────────────────────────────────────────
+describe("/certificado — gerarCertificadoHTML()", () => {
+  const { gerarCertificadoHTML } = require("../commands/certificado");
+  const trilhaJava = buscarTrilha("spring boot");
+
+  test("retorna string HTML válida", () => {
+    const html = gerarCertificadoHTML("Daniela Miranda", trilhaJava.nome, trilhaJava);
+    expect(typeof html).toBe("string");
+    expect(html).toContain("<!DOCTYPE html>");
+    expect(html).toContain("</html>");
+  });
+
+  test("contém nome do participante no HTML", () => {
+    const html = gerarCertificadoHTML("Daniela Miranda", trilhaJava.nome, trilhaJava);
+    expect(html).toContain("Daniela Miranda");
+  });
+
+  test("contém nome da trilha no HTML", () => {
+    const html = gerarCertificadoHTML("Daniela Miranda", trilhaJava.nome, trilhaJava);
+    expect(html).toContain(trilhaJava.nome);
+  });
+
+  test("contém código de validação DIO no HTML", () => {
+    const html = gerarCertificadoHTML("Daniela Miranda", trilhaJava.nome, trilhaJava);
+    expect(html).toMatch(/DIO-[A-F0-9]{4}-[A-F0-9]{4}-\d{4}/);
+  });
+
+  test("contém badges no HTML quando disponíveis", () => {
+    const html = gerarCertificadoHTML("Daniela Miranda", trilhaJava.nome, trilhaJava);
+    trilhaJava.badges_disponiveis.forEach((b) => expect(html).toContain(b));
+  });
+
+  test("funciona sem trilhaInfo (N/A)", () => {
+    const html = gerarCertificadoHTML("João", "Trilha Custom", null);
+    expect(html).toContain("João");
+    expect(html).toContain("N/A");
+  });
+});
+
+describe("/certificado run() — flag --html", () => {
+  const { run: runCertificado } = require("../commands/certificado");
+
+  test("com --html retorna mensagem de sucesso + markdown", () => {
+    const resultado = runCertificado('Daniela "Java Spring Boot" --html');
+    expect(resultado).toContain("✅ Certificado HTML gerado");
+    expect(resultado).toContain("Certificado de Conclusão");
+  });
+
+  test("sem --html retorna apenas markdown", () => {
+    const resultado = runCertificado('Daniela "Java Spring Boot"');
+    expect(resultado).not.toContain("✅ Certificado HTML gerado");
+    expect(resultado).toContain("Certificado de Conclusão");
+  });
+});
+
+// ─────────────────────────────────────────────
+// Testes de integração — fluxo completo
+// ─────────────────────────────────────────────
+describe("🔗 Integração — fluxo trilha → desafio → certificado", () => {
+  test("fluxo completo Java: trilha retorna tecnologia que desafio usa", () => {
+    const plano = dispatch("/trilha spring boot");
+    expect(plano).toContain("Java Spring Boot");
+
+    const desafioResult = dispatch("/desafio java Iniciante");
+    expect(desafioResult).toContain("Fibonacci Iterativo");
+    expect(desafioResult).toContain("Desafio DIO");
+
+    const cert = dispatch('/certificado "Daniela Miranda" "Java Spring Boot"');
+    expect(cert).toContain("Daniela Miranda");
+    expect(cert).toContain("Certificado de Conclusão");
+    expect(cert).toMatch(/DIO-[A-F0-9]{4}-[A-F0-9]{4}-\d{4}/);
+  });
+
+  test("fluxo completo Python: trilha → desafio → certificado", () => {
+    const plano = dispatch("/trilha python");
+    expect(plano).toContain("Python");
+
+    const desafioResult = dispatch("/desafio python Iniciante");
+    expect(desafioResult).toContain("Palíndromo");
+
+    const cert = dispatch('/certificado "Ana Silva" "Python para Data Science"');
+    expect(cert).toContain("Ana Silva");
+    expect(cert).toContain("Certificado de Conclusão");
+  });
+
+  test("fluxo completo TypeScript: desafio específico disponível no novo catálogo", () => {
+    const desafioResult = dispatch("/desafio typescript Avançado");
+    expect(desafioResult).toContain("Type-safe Event Bus");
+  });
+
+  test("fluxo completo Kubernetes: desafio específico disponível", () => {
+    const desafioResult = dispatch("/desafio kubernetes Iniciante");
+    expect(desafioResult).toContain("Deploy de uma API com Kubernetes");
+  });
+
+  test("progresso → trilha → certificado: aluno Daniela tem trilha em andamento", () => {
+    const prog = dispatch("/progresso Daniela");
+    expect(prog).toContain("Progresso de Aprendizado");
+    expect(prog).toContain("IBM Bob");
+
+    // ao concluir, certificado é emitido
+    const cert = dispatch('/certificado "Daniela Miranda" "IBM Bob"');
+    expect(cert).toContain("Daniela Miranda");
+    expect(cert).toContain("Certificado de Conclusão");
+  });
+
+  test("dispatcher roteia /progresso corretamente", () => {
+    const resultado = dispatch("/progresso Daniela");
+    expect(resultado).toContain("Progresso de Aprendizado");
+  });
+
+  test("fluxo de erro: tecnologia inexistente retorna fallback, não quebra", () => {
+    const desafio = dispatch("/desafio cobol_antigo Iniciante");
+    expect(desafio).toContain("Hello World com Estilo"); // fallback
+    expect(desafio).toContain("Desafio DIO");
+  });
+
+  test("certificado HTML no fluxo completo gera arquivo e retorna confirmação", () => {
+    const resultado = dispatch('/certificado "Daniela Miranda" "Java Spring Boot" --html');
+    expect(resultado).toContain("✅ Certificado HTML gerado");
+    expect(resultado).toContain(".html");
+  });
+});

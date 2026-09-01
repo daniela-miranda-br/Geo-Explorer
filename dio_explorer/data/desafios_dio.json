@@ -1,0 +1,321 @@
+{
+  "desafios": {
+    "javascript": {
+      "Iniciante": [
+        {
+          "titulo": "Contador de Vogais",
+          "enunciado": "Crie uma função que receba uma string e retorne o número de vogais encontradas.",
+          "dicas": ["Use .split('') para iterar caracteres", "Crie um array com as vogais e use .includes()"],
+          "esqueleto": "function contarVogais(texto) {\n  // seu código aqui\n}\n\nconsole.log(contarVogais(\"Daniela\")); // 4"
+        },
+        {
+          "titulo": "FizzBuzz Clássico",
+          "enunciado": "Imprima números de 1 a 100. Para múltiplos de 3, imprima 'Fizz'; de 5, 'Buzz'; de ambos, 'FizzBuzz'.",
+          "dicas": ["Use o operador módulo %", "Verifique o caso FizzBuzz primeiro"],
+          "esqueleto": "for (let i = 1; i <= 100; i++) {\n  // seu código aqui\n}"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Debounce Function",
+          "enunciado": "Implemente uma função debounce que atrasa a execução de uma função pelo tempo especificado.",
+          "dicas": ["Use setTimeout e clearTimeout", "Retorne uma função closure"],
+          "esqueleto": "function debounce(fn, delay) {\n  let timer;\n  return function(...args) {\n    // seu código aqui\n  };\n}"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Event Emitter do Zero",
+          "enunciado": "Implemente uma classe EventEmitter com os métodos on(), off() e emit() sem usar bibliotecas.",
+          "dicas": ["Use um Map para armazenar os listeners", "emit() deve chamar todos os listeners registrados para o evento"],
+          "esqueleto": "class EventEmitter {\n  constructor() {\n    // seu código aqui\n  }\n  on(event, listener) {}\n  off(event, listener) {}\n  emit(event, ...args) {}\n}"
+        }
+      ]
+    },
+    "python": {
+      "Iniciante": [
+        {
+          "titulo": "Palíndromo",
+          "enunciado": "Escreva uma função que verifique se uma palavra é um palíndromo (lida igual de trás pra frente).",
+          "dicas": ["Use slicing: palavra[::-1]", "Normalize com .lower() antes de comparar"],
+          "esqueleto": "def e_palindromo(palavra: str) -> bool:\n    # seu código aqui\n    pass\n\nprint(e_palindromo(\"arara\"))  # True"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Decorador de Log",
+          "enunciado": "Crie um decorador @log_chamada que imprime o nome da função, argumentos e resultado a cada chamada.",
+          "dicas": ["Use functools.wraps para preservar metadados", "Capture *args e **kwargs"],
+          "esqueleto": "import functools\n\ndef log_chamada(func):\n    @functools.wraps(func)\n    def wrapper(*args, **kwargs):\n        # seu código aqui\n        pass\n    return wrapper"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Pipeline de Dados Assíncrono",
+          "enunciado": "Implemente um pipeline assíncrono com asyncio que processa uma lista de URLs em paralelo e retorna os status codes.",
+          "dicas": ["Use asyncio.gather() para paralelismo", "Use aiohttp para as requisições"],
+          "esqueleto": "import asyncio\nimport aiohttp\n\nasync def checar_url(session, url):\n    # seu código aqui\n    pass\n\nasync def pipeline(urls: list[str]):\n    # seu código aqui\n    pass"
+        }
+      ]
+    },
+    "java": {
+      "Iniciante": [
+        {
+          "titulo": "Fibonacci Iterativo",
+          "enunciado": "Implemente o cálculo do N-ésimo número de Fibonacci de forma iterativa.",
+          "dicas": ["Evite recursão para não estourar a pilha", "Use duas variáveis para guardar os últimos dois valores"],
+          "esqueleto": "public class Fibonacci {\n    public static long calcular(int n) {\n        // seu código aqui\n        return 0;\n    }\n}"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Builder Pattern",
+          "enunciado": "Implemente o padrão Builder para construir um objeto Pedido com campos opcionais (desconto, observacao, prioridade).",
+          "dicas": ["A classe Builder deve ser estática e interna", "O método build() retorna a instância final"],
+          "esqueleto": "public class Pedido {\n    private final String produto;\n    private final int quantidade;\n    private double desconto;\n    private String observacao;\n\n    // implemente o Builder aqui\n}"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Thread Pool do Zero",
+          "enunciado": "Implemente um ThreadPool simples com número fixo de workers e uma fila de tarefas Runnable.",
+          "dicas": ["Use BlockingQueue para a fila de tarefas", "Cada worker deve consumir da fila em loop"],
+          "esqueleto": "public class ThreadPool {\n    private final int nThreads;\n    // seu código aqui\n\n    public void submit(Runnable task) {}\n    public void shutdown() {}\n}"
+        }
+      ]
+    },
+    "react": {
+      "Iniciante": [
+        {
+          "titulo": "Contador Interativo",
+          "enunciado": "Crie um componente React com um contador que incrementa, decrementa e reseta, usando useState.",
+          "dicas": ["Um único estado numérico é suficiente", "Crie três botões: +1, -1 e Reset"],
+          "esqueleto": "import { useState } from 'react';\n\nexport function Contador() {\n  const [count, setCount] = useState(0);\n  // seu código aqui\n}"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Hook useFetch Customizado",
+          "enunciado": "Crie um hook customizado useFetch(url) que retorna { data, loading, error } e refaz a requisição ao mudar a URL.",
+          "dicas": ["Use useEffect com url como dependência", "Cancele requisições anteriores com AbortController"],
+          "esqueleto": "import { useState, useEffect } from 'react';\n\nexport function useFetch(url) {\n  // seu código aqui\n  return { data, loading, error };\n}"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Gerenciador de Estado Global sem Libs",
+          "enunciado": "Implemente um gerenciador de estado global usando apenas Context API + useReducer + hooks customizados.",
+          "dicas": ["Separe o contexto de estado do contexto de dispatch", "Crie um hook useStore() para encapsular o acesso"],
+          "esqueleto": "const StoreContext = createContext(null);\nconst DispatchContext = createContext(null);\n\nexport function StoreProvider({ children }) {\n  // seu código aqui\n}"
+        }
+      ]
+    },
+    "docker": {
+      "Iniciante": [
+        {
+          "titulo": "Dockerizando uma API Node.js",
+          "enunciado": "Crie um Dockerfile para uma API Node.js com boas práticas: usuário não-root, .dockerignore e multi-stage build.",
+          "dicas": ["Use a imagem node:alpine para menor tamanho", "Defina um usuário node para segurança"],
+          "esqueleto": "# Dockerfile\nFROM node:20-alpine AS builder\nWORKDIR /app\n# seu código aqui\n\nFROM node:20-alpine\n# seu código aqui"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Docker Compose com Banco de Dados",
+          "enunciado": "Crie um docker-compose.yml com um serviço de API, PostgreSQL e Redis, com healthchecks e volumes persistentes.",
+          "dicas": ["Use depends_on com condition: service_healthy", "Defina volumes nomeados para persistência"],
+          "esqueleto": "version: '3.9'\nservices:\n  api:\n    # seu código aqui\n  postgres:\n    # seu código aqui\n  redis:\n    # seu código aqui"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Otimização de Imagem com Multi-stage",
+          "enunciado": "Reduza uma imagem Docker de uma app Go de 800MB para menos de 20MB usando multi-stage build e scratch.",
+          "dicas": ["Compile o binário estático com CGO_ENABLED=0", "Use FROM scratch como imagem final"],
+          "esqueleto": "FROM golang:1.22-alpine AS builder\n# compile aqui\n\nFROM scratch\nCOPY --from=builder /app/main /main\nENTRYPOINT [\"/main\"]"
+        }
+      ]
+    },
+    "typescript": {
+      "Iniciante": [
+        {
+          "titulo": "Tipando uma API de Usuários",
+          "enunciado": "Defina interfaces TypeScript para um sistema de usuários com roles (admin, user, guest) e crie uma função que filtra usuários por role.",
+          "dicas": ["Use type ou interface para definir o modelo", "Use Union Types para as roles: 'admin' | 'user' | 'guest'"],
+          "esqueleto": "interface Usuario {\n  id: number;\n  nome: string;\n  role: 'admin' | 'user' | 'guest';\n}\n\nfunction filtrarPorRole(usuarios: Usuario[], role: Usuario['role']): Usuario[] {\n  // seu código aqui\n  return [];\n}"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Generic Repository Pattern",
+          "enunciado": "Implemente um repositório genérico em TypeScript com métodos findById, findAll, save e delete que funcione para qualquer entidade.",
+          "dicas": ["Use Generics: class Repository<T extends { id: number }>", "Armazene os dados em um Map<number, T>"],
+          "esqueleto": "class Repository<T extends { id: number }> {\n  private store = new Map<number, T>();\n\n  findById(id: number): T | undefined {\n    // seu código aqui\n  }\n  findAll(): T[] {\n    // seu código aqui\n  }\n  save(entity: T): void {\n    // seu código aqui\n  }\n  delete(id: number): boolean {\n    // seu código aqui\n  }\n}"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Type-safe Event Bus",
+          "enunciado": "Implemente um Event Bus com TypeScript que garante em tempo de compilação que os payloads dos eventos correspondem aos tipos registrados.",
+          "dicas": ["Use mapped types e conditional types", "interface EventMap define o contrato nome-evento → tipo-payload"],
+          "esqueleto": "interface EventMap {\n  'user:login': { userId: string; timestamp: Date };\n  'order:created': { orderId: string; total: number };\n}\n\nclass TypedEventBus<T extends Record<string, unknown>> {\n  // seu código aqui\n  on<K extends keyof T>(event: K, handler: (payload: T[K]) => void): void {}\n  emit<K extends keyof T>(event: K, payload: T[K]): void {}\n}"
+        }
+      ]
+    },
+    "golang": {
+      "Iniciante": [
+        {
+          "titulo": "Servidor HTTP Básico",
+          "enunciado": "Crie um servidor HTTP em Go que responde com JSON para as rotas GET /ping e GET /info (nome, versão, uptime).",
+          "dicas": ["Use net/http da stdlib — sem frameworks", "Use encoding/json para serializar a resposta"],
+          "esqueleto": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"net/http\"\n)\n\nfunc main() {\n\thttp.HandleFunc(\"/ping\", func(w http.ResponseWriter, r *http.Request) {\n\t\t// seu código aqui\n\t})\n\thttp.ListenAndServe(\":8080\", nil)\n}"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Worker Pool com Goroutines",
+          "enunciado": "Implemente um worker pool em Go que processa uma lista de 100 tarefas usando N goroutines e um channel como fila.",
+          "dicas": ["Use um buffered channel como fila de trabalho", "Use sync.WaitGroup para aguardar todos os workers"],
+          "esqueleto": "func workerPool(numWorkers int, tarefas []int) {\n\tjobs := make(chan int, len(tarefas))\n\tvar wg sync.WaitGroup\n\n\t// inicie os workers aqui\n\n\t// envie as tarefas\n\tfor _, t := range tarefas {\n\t\tjobs <- t\n\t}\n\tclose(jobs)\n\twg.Wait()\n}"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Rate Limiter com Token Bucket",
+          "enunciado": "Implemente um rate limiter thread-safe usando o algoritmo Token Bucket em Go, com suporte a múltiplos clientes identificados por chave.",
+          "dicas": ["Use sync.Mutex para proteger o estado", "Calcule tokens acumulados com base no tempo decorrido (time.Since)"],
+          "esqueleto": "type RateLimiter struct {\n\t// seu código aqui\n}\n\nfunc NewRateLimiter(rate float64, burst int) *RateLimiter {\n\t// seu código aqui\n}\n\nfunc (rl *RateLimiter) Allow(key string) bool {\n\t// seu código aqui\n\treturn false\n}"
+        }
+      ]
+    },
+    "kotlin": {
+      "Iniciante": [
+        {
+          "titulo": "Calculadora com Sealed Class",
+          "enunciado": "Implemente uma calculadora usando sealed class para representar as operações (Soma, Subtracao, Multiplicacao, Divisao) e uma função que executa o cálculo.",
+          "dicas": ["Use sealed class para modelar as operações", "Use when expression para processar cada caso"],
+          "esqueleto": "sealed class Operacao {\n    data class Soma(val a: Double, val b: Double) : Operacao()\n    // adicione as demais operações\n}\n\nfun calcular(op: Operacao): Double {\n    // seu código aqui\n    return 0.0\n}"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Coroutines com Flow",
+          "enunciado": "Crie um Flow Kotlin que emite os preços de ações simulados a cada segundo e um coletor que calcula a média móvel dos últimos 5 valores.",
+          "dicas": ["Use flow { } builder para criar o fluxo", "Use windowed(5) para a janela de média móvel"],
+          "esqueleto": "import kotlinx.coroutines.flow.*\nimport kotlinx.coroutines.delay\n\nfun precosDasAcoes(): Flow<Double> = flow {\n    // seu código aqui\n}\n\nsuspend fun main() {\n    precosDasAcoes()\n        .windowed(5)\n        // calcule a média e colete aqui\n        .collect { println(it) }\n}"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "DSL Builder para Queries",
+          "enunciado": "Crie uma DSL Kotlin type-safe para construir queries SQL simples: SELECT, FROM, WHERE, ORDER BY e LIMIT.",
+          "dicas": ["Use receiver functions e lambdas para criar o DSL", "A classe QueryBuilder deve acumular as cláusulas"],
+          "esqueleto": "class QueryBuilder {\n    // seu código aqui\n    fun select(vararg campos: String): QueryBuilder = this\n    fun from(tabela: String): QueryBuilder = this\n    fun where(condicao: String): QueryBuilder = this\n    fun build(): String = \"\"\n}\n\nfun query(block: QueryBuilder.() -> Unit): String =\n    QueryBuilder().apply(block).build()"
+        }
+      ]
+    },
+    "csharp": {
+      "Iniciante": [
+        {
+          "titulo": "Lista Genérica com LINQ",
+          "enunciado": "Crie uma lista de produtos com preço e categoria. Use LINQ para filtrar por categoria, ordenar por preço e calcular o total.",
+          "dicas": ["Use List<T> para armazenar os produtos", "Use .Where(), .OrderBy() e .Sum() do LINQ"],
+          "esqueleto": "record Produto(string Nome, decimal Preco, string Categoria);\n\nvar produtos = new List<Produto> {\n    // adicione produtos aqui\n};\n\n// filtre, ordene e some usando LINQ\nvar total = produtos\n    // seu código aqui\n    .Sum(p => p.Preco);"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Middleware Pipeline",
+          "enunciado": "Implemente um pipeline de middlewares em C# similar ao ASP.NET Core: cada middleware pode processar a requisição e chamar o próximo.",
+          "dicas": ["Use Func<RequestDelegate, RequestDelegate> para compor os middlewares", "RequestDelegate é um Func<Context, Task>"],
+          "esqueleto": "public class Context {\n    public string Path { get; set; } = \"\";\n    public int StatusCode { get; set; } = 200;\n}\n\npublic delegate Task RequestDelegate(Context ctx);\n\npublic class Pipeline {\n    private readonly List<Func<RequestDelegate, RequestDelegate>> _middlewares = new();\n\n    public Pipeline Use(Func<RequestDelegate, RequestDelegate> middleware) {\n        // seu código aqui\n        return this;\n    }\n\n    public RequestDelegate Build() {\n        // seu código aqui\n        return ctx => Task.CompletedTask;\n    }\n}"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Canal Produtor-Consumidor com Channel<T>",
+          "enunciado": "Implemente um sistema produtor-consumidor usando System.Threading.Channels com múltiplos produtores, múltiplos consumidores e backpressure configurável.",
+          "dicas": ["Use Channel.CreateBounded<T>(capacity) para backpressure", "Use Task.WhenAll para aguardar todos os produtores/consumidores"],
+          "esqueleto": "using System.Threading.Channels;\n\nvar canal = Channel.CreateBounded<string>(capacity: 10);\n\nasync Task Produtor(ChannelWriter<string> writer, int id) {\n    // seu código aqui\n}\n\nasync Task Consumidor(ChannelReader<string> reader, int id) {\n    // seu código aqui\n}"
+        }
+      ]
+    },
+    "sql": {
+      "Iniciante": [
+        {
+          "titulo": "Consultas com JOIN",
+          "enunciado": "Dado um schema com tabelas clientes, pedidos e itens_pedido, escreva queries para: total por cliente, pedidos sem itens e top 5 clientes por valor.",
+          "dicas": ["Use LEFT JOIN para encontrar pedidos sem itens", "Use GROUP BY + ORDER BY + LIMIT para o ranking"],
+          "esqueleto": "-- Schema:\n-- clientes(id, nome, email)\n-- pedidos(id, cliente_id, data, status)\n-- itens_pedido(id, pedido_id, produto, quantidade, preco_unit)\n\n-- 1. Total gasto por cliente\nSELECT -- seu código aqui\n\n-- 2. Pedidos sem itens\nSELECT -- seu código aqui\n\n-- 3. Top 5 clientes por valor total\nSELECT -- seu código aqui"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "Window Functions e CTEs",
+          "enunciado": "Usando uma tabela de vendas (vendedor, regiao, mes, valor), use CTEs e Window Functions para calcular: ranking por região, % do total e variação mês a mês.",
+          "dicas": ["Use RANK() OVER (PARTITION BY regiao ORDER BY valor DESC)", "Use LAG() para comparar com o mês anterior"],
+          "esqueleto": "-- tabela: vendas(id, vendedor, regiao, mes DATE, valor NUMERIC)\n\nWITH ranking_regional AS (\n  SELECT\n    vendedor,\n    regiao,\n    valor,\n    RANK() OVER (-- seu código aqui) AS rank_regiao,\n    valor / SUM(valor) OVER (-- seu código aqui) * 100 AS pct_total,\n    valor - LAG(valor) OVER (-- seu código aqui) AS variacao_mom\n  FROM vendas\n)\nSELECT * FROM ranking_regional ORDER BY regiao, rank_regiao;"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Otimização de Query com Índices",
+          "enunciado": "Analise um plano de execução de uma query lenta em uma tabela de 10M de registros e proponha os índices corretos, justificando cada escolha.",
+          "dicas": ["Use EXPLAIN ANALYZE para ver o plano real", "Índices compostos: a ordem das colunas importa (seletividade)"],
+          "esqueleto": "-- Query problema (demora 8s em 10M registros):\nSELECT u.nome, COUNT(o.id) as total_pedidos, SUM(o.valor) as total_valor\nFROM usuarios u\nJOIN pedidos o ON o.usuario_id = u.id\nWHERE o.status = 'PAGO'\n  AND o.criado_em BETWEEN '2025-01-01' AND '2025-12-31'\nGROUP BY u.id, u.nome\nHAVING COUNT(o.id) > 5\nORDER BY total_valor DESC\nLIMIT 20;\n\n-- Analise e proponha os CREATE INDEX necessários:\n-- seu código aqui"
+        }
+      ]
+    },
+    "kubernetes": {
+      "Iniciante": [
+        {
+          "titulo": "Deploy de uma API com Kubernetes",
+          "enunciado": "Crie os manifests YAML para fazer o deploy de uma API Node.js no Kubernetes: Deployment (3 réplicas), Service (ClusterIP) e ConfigMap para variáveis de ambiente.",
+          "dicas": ["Use apps/v1 para o Deployment", "O Service seleciona os pods pelo label app: minha-api"],
+          "esqueleto": "# deployment.yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: minha-api\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: minha-api\n  template:\n    # seu código aqui\n---\n# service.yaml\napiVersion: v1\nkind: Service\n# seu código aqui\n---\n# configmap.yaml\napiVersion: v1\nkind: ConfigMap\n# seu código aqui"
+        }
+      ],
+      "Intermediário": [
+        {
+          "titulo": "HPA e Resource Limits",
+          "enunciado": "Configure um HorizontalPodAutoscaler para uma API que escala entre 2 e 10 réplicas baseado em 70% de CPU, com requests e limits definidos no Deployment.",
+          "dicas": ["HPA requer metrics-server instalado no cluster", "Sem requests definidos no container, o HPA não consegue calcular o percentual"],
+          "esqueleto": "# Adicione resources ao container do Deployment:\nresources:\n  requests:\n    cpu: \"100m\"\n    memory: \"128Mi\"\n  limits:\n    # seu código aqui\n---\napiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nmetadata:\n  name: minha-api-hpa\nspec:\n  scaleTargetRef:\n    # seu código aqui\n  minReplicas: 2\n  maxReplicas: 10\n  metrics:\n  # seu código aqui"
+        }
+      ],
+      "Avançado": [
+        {
+          "titulo": "Canary Deployment com Ingress",
+          "enunciado": "Implemente um canary deployment que envia 10% do tráfego para a versão v2 de uma API usando annotations do Nginx Ingress Controller.",
+          "dicas": ["Use nginx.ingress.kubernetes.io/canary: 'true' no Ingress da v2", "nginx.ingress.kubernetes.io/canary-weight: '10' controla a porcentagem"],
+          "esqueleto": "# ingress-stable.yaml (v1 - 90% do tráfego)\napiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: minha-api-stable\n  # seu código aqui\n---\n# ingress-canary.yaml (v2 - 10% do tráfego)\napiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: minha-api-canary\n  annotations:\n    nginx.ingress.kubernetes.io/canary: \"true\"\n    # seu código aqui"
+        }
+      ]
+    }
+  },
+  "fallback": {
+    "Iniciante": {
+      "titulo": "Hello World com Estilo",
+      "enunciado": "Crie um programa que imprime 'Hello, DIO!' e exibe a data e hora atual formatada.",
+      "dicas": ["Pesquise como obter a data atual na sua linguagem", "Formate no padrão dd/mm/yyyy HH:MM"],
+      "esqueleto": "// Implemente em sua linguagem preferida\n// Saída esperada:\n// Hello, DIO!\n// Hoje é: 09/01/2026 às 10:30"
+    },
+    "Intermediário": {
+      "titulo": "API REST Simples",
+      "enunciado": "Crie uma API REST com endpoints CRUD para gerenciar uma lista de tarefas (to-do list) em memória.",
+      "dicas": ["GET /tasks, POST /tasks, PUT /tasks/:id, DELETE /tasks/:id", "Use um array em memória como 'banco de dados'"],
+      "esqueleto": "// Implemente os 4 endpoints CRUD\n// Cada tarefa deve ter: id, titulo, concluida, criadaEm"
+    },
+    "Avançado": {
+      "titulo": "Cache LRU",
+      "enunciado": "Implemente uma estrutura de cache LRU (Least Recently Used) com capacidade configurável e operações get/put em O(1).",
+      "dicas": ["Combine um HashMap com uma Doubly Linked List", "get() e put() devem ser O(1)"],
+      "esqueleto": "// LRUCache(capacidade)\n// get(chave) -> valor ou -1\n// put(chave, valor) -> void"
+    }
+  },
+  "meta": {
+    "total_tecnologias": 11,
+    "ultima_atualizacao": "2026-01-09",
+    "tecnologias": ["javascript", "python", "java", "react", "docker", "typescript", "golang", "kotlin", "csharp", "sql", "kubernetes"]
+  }
+}

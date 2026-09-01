@@ -8,27 +8,32 @@
 const trilha = require("./trilha");
 const desafio = require("./desafio");
 const certificado = require("./certificado");
+const progresso = require("./progresso");
 
 const COMANDOS = {
   "/trilha": trilha,
   "/desafio": desafio,
   "/certificado": certificado,
+  "/progresso": progresso,
 };
 
 function AJUDA() {
   return `
 🤖 **dio_explorer — Slash Commands disponíveis**
 
-| Comando       | Uso                                         | Descrição                              |
-|---------------|---------------------------------------------|----------------------------------------|
-| /trilha       | \`/trilha <tecnologia>\`                    | Plano de estudos de uma trilha DIO     |
-| /desafio      | \`/desafio <tecnologia> [nivel]\`           | Gera um desafio de código aleatório    |
-| /certificado  | \`/certificado <nome> "<trilha>"\`          | Emite um certificado fictício          |
+| Comando       | Uso                                              | Descrição                              |
+|---------------|--------------------------------------------------|----------------------------------------|
+| /trilha       | \`/trilha <tecnologia>\`                         | Plano de estudos de uma trilha DIO     |
+| /desafio      | \`/desafio <tecnologia> [nivel]\`                | Gera um desafio de código aleatório    |
+| /certificado  | \`/certificado <nome> "<trilha>" [--html]\`      | Emite um certificado (Markdown ou HTML)|
+| /progresso    | \`/progresso <nome>\`                            | Exibe o progresso de aprendizado       |
 
 **Exemplos:**
   node index.js /trilha Python
   node index.js /desafio React Avançado
   node index.js /certificado Daniela "Python para Data Science e Machine Learning"
+  node index.js /certificado Daniela "Java Spring Boot" --html
+  node index.js /progresso Daniela
 `.trim();
 }
 

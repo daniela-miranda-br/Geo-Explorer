@@ -1,0 +1,20 @@
+{
+  "participantes": [
+    {
+      "nome": "Daniela Miranda",
+      "trilhas": [
+        {
+          "trilha_id": 1,
+          "nome": "IBM Bob: IA de Nível Empresarial para Desenvolvedores e Tech Leaders",
+          "tecnologia": "Inteligência Artificial / IBM Bob",
+          "status": "em andamento",
+          "iniciado_em": "2026-01-09",
+          "concluido_em": null,
+          "xp_conquistado": 0,
+          "modulos_concluidos": 3,
+          "total_modulos": 12
+        }
+      ]
+    }
+  ]
+}
