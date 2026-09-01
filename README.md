@@ -4,7 +4,7 @@
 
 ## 👩‍💻 A Missão
 
-A **Daniela** está me instruindo na criação deste projeto — e posso dizer que ela sabe muito bem o que está fazendo! Juntos, estamos explorando o poder dos agentes de IA dentro de um curso da **[DIO (Digital Innovation One)](https://www.dio.me/)**.
+A **Daniela** está me instruindo na criação deste projeto — e posso dizer que ela sabe muito bem o que está fazendo! Juntos, estamos explorando o poder dos agentes de IA dentro de um curso **[IBM Bob: IA de Nível Empresarial para Desenvolvedores e Tech Leaders](https://web.dio.me/track/ibm-bob-ia-nivel-empresarial-para-desenvolvedores)** da **[DIO (Digital Innovation One)](https://www.dio.me/)**.
 
 Este repositório é o campo de batalha onde teoria vira prática, onde prompts viram código e onde a curiosidade não tem limites. 🚀
 

@@ -1,0 +1,27 @@
+{
+  "trilhas": [
+    {
+      "id": 1,
+      "nome": "IBM Bob: IA de Nível Empresarial para Desenvolvedores e Tech Leaders",
+      "plataforma": "DIO",
+      "url": "https://web.dio.me/track/ibm-bob-ia-nivel-empresarial-para-desenvolvedores",
+      "descricao": "Trilha focada no uso do IBM Bob como agente de IA para desenvolvedores e líderes de tecnologia, explorando integração com MCP, automação e boas práticas de desenvolvimento assistido por IA.",
+      "topicos": [
+        "Introdução ao IBM Bob",
+        "Agentes de IA em ambientes empresariais",
+        "Model Context Protocol (MCP)",
+        "Automação de tarefas com IA",
+        "Integração com GitHub",
+        "Boas práticas para Tech Leaders"
+      ],
+      "status": "em andamento",
+      "participante": "Daniela Miranda",
+      "iniciado_em": "2026-01-09"
+    }
+  ],
+  "meta": {
+    "total_trilhas": 1,
+    "ultima_atualizacao": "2026-01-09",
+    "repositorio": "https://github.com/daniela-miranda-br/Dio-Class"
+  }
+}
