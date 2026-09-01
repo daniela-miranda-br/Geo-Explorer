@@ -1,0 +1,27 @@
+{
+  "name": "dio_explorer",
+  "version": "1.0.0",
+  "description": "dio_explorer — Slash Commands CLI",
+  "main": "commands/index.js",
+  "scripts": {
+    "test": "jest --coverage --coverageReporters=text --coverageReporters=lcov",
+    "test:ci": "jest --coverage --coverageReporters=text --coverageThreshold='{\"global\":{\"lines\":70}}'"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "commands/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 70,
+        "functions": 70,
+        "branches": 60,
+        "statements": 70
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
