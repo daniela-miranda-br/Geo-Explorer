@@ -98,7 +98,7 @@ concluiu com êxito a trilha de aprendizado:
 ---
 
 <sub>🔐 Código de validação: `DIO-XXXX-XXXX-NNNN` — Emitido em <data> via dio_explorer</sub>
-<sub>📎 Verifique em: https://github.com/daniela-miranda-br/Dio-Class</sub>
+<sub>📎 Verifique em: https://github.com/daniela-miranda-br/Geo-Explorer</sub>
 ```
 
 ## 5. Dica pós-certificado

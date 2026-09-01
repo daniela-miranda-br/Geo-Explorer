@@ -98,7 +98,7 @@ ${badges.length > 0 ? `## 🏅 Badges Conquistadas\n\n${badges.map((b) => `- �
 ---
 
 <sub>🔐 Código de validação: \`${codigo}\` — Emitido em ${hoje} via dio_explorer</sub>
-<sub>📎 Verifique em: https://github.com/daniela-miranda-br/Dio-Class</sub>
+<sub>📎 Verifique em: https://github.com/daniela-miranda-br/Geo-Explorer</sub>
 `.trim();
 }
 
@@ -370,7 +370,7 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
     </div>
     <div class="cert-footer">
       <span>🔐 Código: <strong>${codigo}</strong></span>
-      <a href="https://github.com/daniela-miranda-br/Dio-Class" target="_blank">
+      <a href="https://github.com/daniela-miranda-br/Geo-Explorer" target="_blank">
         📎 Verificar autenticidade
       </a>
     </div>

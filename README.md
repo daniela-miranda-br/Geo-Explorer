@@ -1,4 +1,4 @@
-# 🤖 Dio-Class — dio_explorer
+# 🤖 Geo-Explorer — dio_explorer
 
 > *Projeto prático desenvolvido com IBM Bob durante o curso **[IBM Bob: IA de Nível Empresarial para Desenvolvedores e Tech Leaders](https://web.dio.me/track/ibm-bob-ia-nivel-empresarial-para-desenvolvedores)** na [DIO (Digital Innovation One)](https://www.dio.me/).*
 
