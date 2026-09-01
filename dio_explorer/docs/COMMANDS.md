@@ -180,34 +180,40 @@ public class Fibonacci {
 ### Sintaxe
 
 ```
-/certificado <nome> "<trilha>"
-/certificado <nome> <tecnologia>
+/certificado <nome> "<trilha>" [--html]
+/certificado <nome> <tecnologia> [--html]
 ```
 
 ### Descrição
 
-Emite um certificado fictício em Markdown, com:
+Emite um certificado com:
 - Código de validação único gerado por hash (`DIO-XXXX-XXXX-NNNN`)
 - Data de emissão
 - XP conquistado
 - Badges da trilha (quando encontrada no catálogo)
 - Assinaturas do participante e do IBM Bob
 
+Com a flag `--html`, gera um **arquivo HTML estilizado** salvo em `docs/certificados/` e o abre automaticamente no navegador padrão.
+
 ### Parâmetros
 
 | Parâmetro | Obrigatório | Descrição |
 |---|---|---|
-| `nome` | Sim | Nome completo do participante |
+| `nome` | Sim | Nome completo do participante (use aspas para nomes com espaço) |
 | `trilha` | Sim | Nome da trilha (com aspas) ou tecnologia (sem aspas para busca automática) |
+| `--html` | Não | Gera e abre o certificado em HTML estilizado |
 
 ### Exemplos
 
 ```bash
-# Com nome completo da trilha (aspas obrigatórias quando há espaços)
-node commands/index.js /certificado "Daniela Miranda" "Java Spring Boot: APIs RESTful do Zero à Produção"
+# Markdown no terminal (padrão)
+node commands/index.js /certificado "Daniela Miranda" "Java Spring Boot"
 
-# Com tecnologia (busca automática)
-node commands/index.js /certificado "João Silva" java
+# HTML — salvo em docs/certificados/ e aberto no navegador
+node commands/index.js /certificado "Daniela Miranda" "Java Spring Boot" --html
+
+# Com tecnologia como busca
+node commands/index.js /certificado "João Silva" java --html
 
 # Nome simples
 node commands/index.js /certificado Daniela python
@@ -262,3 +268,30 @@ input: "/trilha spring boot"
 ```
 
 O comando é normalizado com `.toLowerCase()` antes da lookup, tornando `/TRILHA`, `/Trilha` e `/trilha` equivalentes.
+
+---
+
+## `/progresso` — Progresso de Aprendizado
+
+### Sintaxe
+
+```
+/progresso <nome>
+```
+
+### Descrição
+
+Exibe o progresso de aprendizado registrado em `data/progresso.json`, mostrando trilhas concluídas e XP acumulado.
+
+### Parâmetros
+
+| Parâmetro | Obrigatório | Descrição |
+|---|---|---|
+| `nome` | Sim | Nome do participante |
+
+### Exemplos
+
+```bash
+node commands/index.js /progresso Daniela
+node commands/index.js /progresso "Daniela Miranda"
+```

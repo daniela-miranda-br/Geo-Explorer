@@ -243,6 +243,32 @@ Não subestime o valor de terminar um projeto. Um projeto completo — mesmo sim
 
 ---
 
+---
+
+## 11. O que eu (Daniela) aprendi durante este desafio
+
+> *Esta seção é pessoal — são os aprendizados reais de quem construiu este projeto do zero.*
+
+**Estrutura de projeto real**
+Antes eu pensava em código como "um arquivo". Aqui aprendi que projetos reais são organizados em camadas — dados, lógica, interface — e que separar responsabilidades entre arquivos não é burocracia: é o que permite crescer sem quebrar tudo.
+
+**Como usar e integrar o IBM Bob**
+Aprendi que o Bob não "faz tudo por mim" — ele é um co-desenvolvedor. Aprendi a descrever o que quero com precisão, revisar o que foi gerado com olhos críticos, questionar escolhas de arquitetura e iterar. Saber *o que pedir* é uma habilidade tanto quanto saber programar.
+
+**O que é o protocolo MCP**
+Entendi na prática o que é o Model Context Protocol: a "tomada padrão" que conecta ferramentas a agentes de IA. Implementar um servidor MCP real me mostrou como essa comunicação acontece nos bastidores — e por que isso vai ser importante no mercado.
+
+**Como o Git é usado no dia a dia**
+Aprendi o fluxo real: `add`, `commit` com mensagens que contam uma história, `push`, `.gitignore` para proteger o repositório. Entendi por que **nunca se sobe senhas, tokens ou arquivos privados** — e como o `.gitignore` e variáveis de ambiente resolvem isso.
+
+**Testes unitários não são opcionais**
+Ver 56 testes passando com 95% de cobertura foi uma das melhores sensações do projeto. Entendi que testes são documentação que funciona: eles descrevem o comportamento esperado e avisam quando algo quebra.
+
+**Tudo do projeto — de ponta a ponta**
+Desde o primeiro `npm install` até o `git push` final: entendi como cada peça se encaixa, por que cada decisão foi feita, e o que posso reutilizar em projetos futuros. Esse projeto virou um laboratório permanente de aprendizado.
+
+---
+
 <div align="center">
 
 *"O melhor código que você já escreveu é o próximo que você vai escrever — com o que aprendeu até aqui."*

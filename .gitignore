@@ -10,10 +10,16 @@ dio_explorer/mcp/build/
 coverage/
 *.lcov
 
-# Ambiente
+# Ambiente - NUNCA suba senhas, tokens ou segredos
 .env
 .env.local
 .env.*.local
+*.key
+*.pem
+secrets/
+
+# Pasta aninhada (clone do repo dentro do repo - nao faz parte do projeto)
+dio_explorer/Geo-Explorer/
 
 # Sistema operacional
 .DS_Store

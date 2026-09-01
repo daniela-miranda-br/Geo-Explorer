@@ -22,7 +22,7 @@ O **dio_explorer** é organizado em três camadas independentes que se comunicam
 ┌────────────────────────────────────────────────────┐
 │              CAMADA DE LÓGICA (commands/)           │
 │                                                     │
-│   trilha.js      desafio.js      certificado.js     │
+│  trilha.js  desafio.js  certificado.js  progresso.js│
 └────────────────────────┬───────────────────────────┘
                          │
                          ▼
@@ -97,10 +97,18 @@ Tecnologias suportadas com desafios específicos: `javascript`, `python`, `java`
 #### `commands/certificado.js`
 
 Fluxo interno:
-1. `run(args)` — parseia `<nome> "<trilha>"` via regex com dois padrões (com/sem aspas)
+1. `run(args)` — parseia `<nome> "<trilha>" [--html]` via regex com quatro padrões (ambos com aspas / só nome / só trilha / sem aspas)
 2. `buscarTrilha(trilhaArg)` — reusa a função de `trilha.js` para encontrar info enriquecida
 3. `gerarCodigoValidacao(nome, trilha)` — hash djb2 do par nome+trilha+timestamp, formatado como `DIO-XXXX-XXXX-NNNN`
 4. `gerarCertificado(nome, nomeTrilha, trilhaInfo)` — monta o documento Markdown
+5. `gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo)` — gera HTML estilizado completo (com `--html`)
+6. `salvarHTML(nome, nomeTrilha, html)` — salva o arquivo em `docs/certificados/` e abre no navegador via `execSync`
+
+#### `commands/progresso.js`
+
+Fluxo interno:
+1. `run(args)` — recebe o nome do participante
+2. Lê `data/progresso.json` para exibir o histórico de trilhas concluídas e XP acumulado
 
 ---
 
