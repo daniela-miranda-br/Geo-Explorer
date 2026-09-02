@@ -385,13 +385,14 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
       border-top-color:#1d4ed8;
     }
 
-    /* Bob image */
+    /* Bob image — fundo já é escuro, sem blend mode necessário */
     #bob-img{
-      width:240px;
+      width:160px;
       height:auto;
       display:block;
       object-fit:contain;
-      filter:drop-shadow(0 4px 16px rgba(59,130,246,0.55));
+      filter:drop-shadow(0 0 20px rgba(99,102,241,0.6));
+      border-radius:8px;
     }
 
     /* stars container */
@@ -426,7 +427,7 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
     <div id="bob-inner">
       <div class="bob-bubble">Parabéns, ${nome}! 🎉</div>
       <img id="bob-img"
-           src="https://assets.ibm.com/is/content/ibm/email-banner-core-bob-568x228?ts=1779477580231&dpr=off"
+           src="../ibm-bob-dark-bg-1x1.PNG"
            alt="IBM Bob" />
     </div>
   </div>
@@ -438,6 +439,16 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
       <div class="cert-org">Digital Innovation One — DIO</div>
       <div class="cert-title">Certificado de Conclusão</div>
     </div>
+    <div class="cert-parabens" style="
+      background:linear-gradient(90deg,#1d4ed8,#7c3aed);
+      color:#fff;
+      text-align:center;
+      padding:0.9rem 1rem;
+      font-size:1.15rem;
+      font-weight:800;
+      letter-spacing:0.05em;
+      animation:fadeInDown 0.5s 0.9s ease both;
+    ">🎉 Parabéns, ${nome}! Você concluiu a trilha com sucesso! 🏆</div>
     <div class="cert-body">
       <p class="cert-atesta">Certificamos que</p>
       <div class="cert-nome">${nome}</div>
