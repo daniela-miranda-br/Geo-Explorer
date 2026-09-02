@@ -3,11 +3,12 @@
  * Uso: /certificado <nome> "<trilha>" [--html]
  * Descrição: Gera um certificado fictício em Markdown com o nome do usuário
  *            e a trilha concluída, incluindo código de validação único.
- *            Com --html, salva um arquivo HTML estilizado em docs/certificados/
+ *            Com --html, salva um arquivo HTML animado em docs/certificados/
  */
 
 const fs = require("fs");
 const path = require("path");
+const { execSync } = require("child_process");
 const { buscarTrilha } = require("./trilha");
 
 const CERT_DIR = path.resolve(__dirname, "../docs/certificados");
@@ -90,7 +91,7 @@ ${badges.length > 0 ? `## 🏅 Badges Conquistadas\n\n${badges.map((b) => `- �
 \`\`\`
   ___________________________      ___________________________
  |                           |    |                           |
- |   Daniela Miranda         |    |   IBM Bob                 |
+ |   ${nome.padEnd(25)}|    |   IBM Bob                 |
  |   Participante            |    |   Assistente Oficial      |
  |___________________________|    |___________________________|
 \`\`\`
@@ -130,6 +131,32 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Certificado DIO — ${nome}</title>
   <style>
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+    @keyframes popIn {
+      0%   { opacity: 0; transform: scale(0.7); }
+      70%  { transform: scale(1.08); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes borderGlow {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 0.9; }
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
@@ -146,14 +173,17 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
       max-width: 820px;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      animation: fadeInUp 0.7s ease both;
     }
     .cert-header {
       background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #7c3aed 100%);
+      background-size: 200% 200%;
       color: white;
       text-align: center;
       padding: 3rem 2rem 2rem;
       position: relative;
+      animation: fadeInDown 0.6s ease both;
     }
     .cert-header::before {
       content: '';
@@ -162,22 +192,40 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
       border: 2px solid rgba(255,255,255,0.3);
       border-radius: 10px;
       pointer-events: none;
+      animation: borderGlow 3s ease-in-out infinite;
     }
-    .cert-logo { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .cert-logo {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      animation: popIn 0.6s 0.3s ease both;
+    }
     .cert-org {
       font-size: 0.75rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       opacity: 0.8;
       margin-bottom: 0.75rem;
+      animation: fadeIn 0.6s 0.4s ease both;
     }
     .cert-title {
       font-size: 1.6rem;
       font-weight: 800;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      animation: fadeIn 0.6s 0.5s ease both;
+      /* shimmer effect */
+      background: linear-gradient(90deg, #fff 25%, #a5b4fc 50%, #fff 75%);
+      background-size: 400px 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeIn 0.6s 0.5s ease both, shimmer 3s 1s linear infinite;
     }
-    .cert-body { padding: 2.5rem 3rem; }
+    .cert-body {
+      padding: 2.5rem 3rem;
+      animation: fadeIn 0.7s 0.5s ease both;
+    }
     .cert-atesta {
       text-align: center;
       color: #64748b;
@@ -191,6 +239,7 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
       color: #0f172a;
       margin-bottom: 0.75rem;
       letter-spacing: -0.02em;
+      animation: popIn 0.5s 0.7s ease both;
     }
     .cert-concluiu {
       text-align: center;
@@ -203,6 +252,7 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
       font-weight: 700;
       color: #1d4ed8;
       margin-bottom: 2rem;
+      animation: fadeInUp 0.5s 0.8s ease both;
     }
     .cert-divider {
       height: 1px;
@@ -220,6 +270,11 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
       border: 1px solid #e2e8f0;
       border-radius: 10px;
       padding: 1rem 1.25rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cert-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
     .cert-item-label {
       font-size: 0.7rem;
@@ -269,6 +324,7 @@ function gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo) {
       border-radius: 999px;
       font-size: 0.82rem;
       font-weight: 600;
+      animation: popIn 0.4s ease both;
     }
     .cert-declaracao {
       background: #f8fafc;
@@ -383,8 +439,18 @@ function salvarHTML(nome, nomeTrilha, html) {
   if (!fs.existsSync(CERT_DIR)) {
     fs.mkdirSync(CERT_DIR, { recursive: true });
   }
-  const nomeSanitizado = nome.replace(/[^a-zA-Z0-9\sÀ-ÿ]/g, "").trim().replace(/\s+/g, "-");
-  const trilhaSanitizada = nomeTrilha.replace(/[^a-zA-Z0-9\s]/g, "").trim().replace(/\s+/g, "-").slice(0, 40);
+  // Sanitiza mantendo espaços entre palavras, depois troca por hífen
+  const nomeSanitizado = nome
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")  // remove acentos
+    .replace(/[^a-zA-Z0-9\s]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+  const trilhaSanitizada = nomeTrilha
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9\s]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .slice(0, 40);
   const nomeArquivo = `${nomeSanitizado}-${trilhaSanitizada}.html`;
   const filePath = path.join(CERT_DIR, nomeArquivo);
   fs.writeFileSync(filePath, html, "utf-8");
@@ -396,15 +462,21 @@ function run(args) {
     return [
       "❌ Uso correto: `/certificado <nome> \"<trilha>\"` ou `/certificado <nome> \"<trilha>\" --html`",
       "Exemplos:",
-      '  `/certificado Daniela "Python para Data Science e Machine Learning"`',
-      '  `/certificado Daniela "Java Spring Boot" --html`  ← salva arquivo HTML',
+      '  `/certificado "Daniela Miranda" "Java Spring Boot"`',
+      '  `/certificado "Daniela Miranda" "Java Spring Boot" --html`  ← salva arquivo HTML',
     ].join("\n");
   }
 
   const exportHTML = args.includes("--html");
   const argsLimpos = args.replace("--html", "").trim();
 
-  const match = argsLimpos.match(/^(.+?)\s+"(.+)"$/) || argsLimpos.match(/^(.+?)\s+(.+)$/);
+  // Suporta: "Nome Completo" "Trilha" | "Nome" Trilha | Nome "Trilha" | Nome Trilha
+  const matchAmbosComAspas = argsLimpos.match(/^"([^"]+)"\s+"([^"]+)"$/);
+  const matchNomeComAspas   = argsLimpos.match(/^"([^"]+)"\s+(.+)$/);
+  const matchTrilhaComAspas = argsLimpos.match(/^(.+?)\s+"([^"]+)"$/);
+  const matchSemAspas       = argsLimpos.match(/^(.+?)\s+(.+)$/);
+
+  const match = matchAmbosComAspas || matchNomeComAspas || matchTrilhaComAspas || matchSemAspas;
 
   if (!match) {
     return `❌ Formato inválido. Use: \`/certificado <nome> "<trilha>"\``;
@@ -418,10 +490,22 @@ function run(args) {
   if (exportHTML) {
     const html = gerarCertificadoHTML(nome, nomeTrilha, trilhaInfo);
     const filePath = salvarHTML(nome, nomeTrilha, html);
+
+    try {
+      const cmd =
+        process.platform === "win32"
+          ? `start "" "${filePath}"`
+          : process.platform === "darwin"
+          ? `open "${filePath}"`
+          : `xdg-open "${filePath}"`;
+      execSync(cmd, { stdio: "ignore" });
+    } catch (_) {
+      // Silently ignore if browser can't be opened
+    }
+
     return (
-      `✅ Certificado HTML gerado com sucesso!\n\n` +
+      `✅ Certificado HTML gerado e aberto no navegador!\n\n` +
       `📄 **Arquivo:** \`${filePath}\`\n\n` +
-      `Abra o arquivo no seu navegador para visualizar o certificado estilizado.\n\n` +
       gerarCertificado(nome, nomeTrilha, trilhaInfo)
     );
   }

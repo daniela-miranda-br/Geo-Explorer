@@ -54,8 +54,12 @@ function dispatch(input) {
 
 // Execução via CLI: node index.js /trilha Python
 if (require.main === module) {
-  const args = process.argv.slice(2).join(" ");
-  console.log(dispatch(args));
+  const argv = process.argv.slice(2);
+  const comando = argv[0] || "";
+  // Reconstrói os args preservando tokens com espaços entre aspas
+  const argsTokens = argv.slice(1);
+  const argsStr = argsTokens.map(t => (t.includes(" ") ? `"${t}"` : t)).join(" ");
+  console.log(dispatch(comando + (argsStr ? " " + argsStr : "")));
 }
 
 module.exports = { dispatch };
